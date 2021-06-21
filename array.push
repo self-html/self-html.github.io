@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0;">
+  <link rel="stylesheet" type="text/css" media="screen" href="./Beispiel:SELFHTML-Beispiel-Grundlayout.css" />
+
+  <title>Array.push</title>
+	<script>
+'use strict';
+
+(function () {
+
+	var farben = ['rot', 'orange', 'gelb', 'grün', 'blau'];
+
+	function init() {
+		var elem = document.getElementById('form');
+
+		if (elem) {
+			elem.addEventListener(
+				'submit',
+				function (e) {
+					e.stopPropagation();
+					e. preventDefault();
+					return anhaengen();
+				}
+			);
+		}
+
+		anhaengen();
+	}
+
+	function anhaengen() {
+		var eingabe = document.getElementById("input"),
+			ul = document.getElementById("ausgabe");
+
+		if (eingabe && ausgabe && eingabe.value.length > 0) {
+
+			farben.push(eingabe.value);
+		}
+		farben.sort();
+
+		// Liste leeren
+		while (ul.firstChild) {
+			ul.removeChild(ul.firstChild);
+		}
+
+		farben.forEach(function (f) {
+
+			var li = document.createElement("li");
+
+			li.appendChild(document.createTextNode(f));
+
+			ul.appendChild(li);
+		});
+
+		return false;
+	}
+
+	document.addEventListener(
+		"DOMContentLoaded",
+		function () { init(); }
+	);
+
+}());
+</script>
+</head>
+<body>
+<h1>Beispiel: Array.push - Elemente an Arrays hängen</h1>
+	<main>
+		<p>Erweitern Sie das Array mit neuen Begriffen.</p>
+		<p><pre>var farben = ['rot', 'orange', 'gelb', 'grün', 'blau']; </pre></p>
+		<form id="form">
+			<input type="text" id="input" size="40" placeholder="neuer Begriff">
+			<button id="addButton" >Los!</button>
+			<p>Aktuelle Werte im Array:</p>
+			<ul id="ausgabe"></ul>
+		</form>
+	</main>
+</body>
+</html>
